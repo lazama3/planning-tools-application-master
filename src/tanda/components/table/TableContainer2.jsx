@@ -53,7 +53,7 @@ export default function CustomTable() {
     }
     if (selectedMethod === "Menor Costo") {
       console.log("least cost");
-      newSolution = leastCostMethod(supply, demand, costs);
+      newSolution = leastCostMethod(costs, supply, demand);
       console.log("newSolution");
       console.log(newSolution);
     }
@@ -137,7 +137,8 @@ export default function CustomTable() {
 
     let remainingSupply = [...supply];
     let remainingDemand = [...demand];
-
+    console.log("remainingSupply, remainingDemand");
+    console.log(remainingSupply, remainingDemand);
     while (
       remainingSupply.some((s) => s > 0) &&
       remainingDemand.some((d) => d > 0)
@@ -166,8 +167,8 @@ export default function CustomTable() {
     }
 
     console.log("solution");
-    console.log(transpose(solution));
-    return transpose(solution);
+    // console.log(transpose(solution));
+    return solution;
   };
   const calculateObjectiveValue = (tableData, assignmentMatrix) => {
     let objectiveValue = 0;
