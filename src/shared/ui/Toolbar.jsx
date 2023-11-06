@@ -1,10 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography, Divider, Stack, Container, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Divider,
+  Stack,
+  Container,
+  IconButton,
+} from "@mui/material";
 import { iconMap } from "../helpers";
 
-export const Toolbar = ({ title, nextPage, nextPageTitle, previousPage, previousPageTitle }) => {
+export const Toolbar = ({
+  title,
+  nextPage,
+  nextPageTitle,
+  previousPage,
+  previousPageTitle,
+}) => {
   let navigate = useNavigate();
 
   const onNextPage = () => navigate(nextPage);
@@ -15,9 +28,17 @@ export const Toolbar = ({ title, nextPage, nextPageTitle, previousPage, previous
     <Container maxWidth="xl">
       <Stack direction="row" justifyContent="space-around" alignItems="center">
         <Box textAlign="center">
-          <IconButton aria-label="previousPage" size="small" disabled={!previousPage} onClick={onPreviousPage}>
+          <IconButton
+            aria-label="previousPage"
+            size="small"
+            disabled={!previousPage}
+            onClick={onPreviousPage}
+          >
             {iconMap["leftArrow"]}
-            <Typography variant="overline" display={{ xs: "none", sm: "block" }}>
+            <Typography
+              variant="overline"
+              display={{ xs: "none", sm: "block" }}
+            >
               {previousPageTitle}
             </Typography>
           </IconButton>
@@ -28,8 +49,16 @@ export const Toolbar = ({ title, nextPage, nextPageTitle, previousPage, previous
         </Box>
 
         <Box textAlign="right">
-          <IconButton aria-label="nextPage" size="small" disabled={!nextPage} onClick={onNextPage}>
-            <Typography variant="overline" display={{ xs: "none", sm: "block" }}>
+          <IconButton
+            aria-label="nextPage"
+            size="small"
+            disabled={!nextPage}
+            onClick={onNextPage}
+          >
+            <Typography
+              variant="overline"
+              display={{ xs: "none", sm: "block" }}
+            >
               {nextPageTitle}
             </Typography>
             {iconMap["rightArrow"]}

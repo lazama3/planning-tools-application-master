@@ -25,9 +25,9 @@ export const Header = ({ currentType, handleDrawerOpen }) => {
             <Box display={{ xs: "none", md: "flex" }}>
               <Logo variant="h7" hiddenText={false} iconSize="medium" />
             </Box>
-            <Typography variant="overline" color="inherit">
+            {/* <Typography variant="overline" color="inherit">
               {currentType}
-            </Typography>
+            </Typography> */}
             <Box display={{ xs: "flex", md: "none" }}>
               <Logo variant="h7" hiddenText={true} />
             </Box>
