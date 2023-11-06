@@ -325,21 +325,23 @@ const MainTable = () => {
   ];
   return (
     <div>
-      <div className="MainTable" style={{ margin: "2rem" }}>
+      <div className="MainTable" style={{ margin: "1rem" }}>
         <TextField
+          size="small"
           label="Número de Filas"
           type="number"
           value={rows}
           onChange={(e) => setRows(parseInt(e.target.value))}
         />
         <TextField
+          size="small"
           label="Número de Columnas"
           type="number"
           value={columns}
           onChange={(e) => setColumns(parseInt(e.target.value))}
         />
       </div>
-      <Paper elevation={3} style={{ margin: "0 2rem" }}>
+      <Paper elevation={3} style={{ margin: "0 1rem" }}>
         <Table>
           <TableHead>
             <TableRow
@@ -378,6 +380,7 @@ const MainTable = () => {
                 {row.values.map((value, colIndex) => (
                   <TableCell key={colIndex} align="center">
                     <TextField
+                      size="small"
                       value={value}
                       onChange={(e) =>
                         handleCellValueChange(
@@ -392,6 +395,7 @@ const MainTable = () => {
                 ))}
                 <TableCell align="center">
                   <TextField
+                    size="small"
                     value={row.supply}
                     onChange={(e) =>
                       handleSupplyChange(rowIndex, e.target.value)
@@ -413,6 +417,7 @@ const MainTable = () => {
               {tableData.demand.map((value, colIndex) => (
                 <TableCell key={colIndex} align="center">
                   <TextField
+                    size="small"
                     value={value}
                     onChange={(e) =>
                       handleDemandChange(colIndex, e.target.value)
@@ -426,7 +431,7 @@ const MainTable = () => {
           </TableBody>
         </Table>
       </Paper>
-      <Button style={{ margin: "2rem" }} onClick={handleClick}>
+      <Button style={{ margin: "0.5rem 1rem" }} onClick={handleClick}>
         Resolver Problema
       </Button>
       <Menu
