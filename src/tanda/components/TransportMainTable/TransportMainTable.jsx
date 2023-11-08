@@ -49,28 +49,30 @@ const MainTable = () => {
   const [solution, setSolution] = useState(false);
 
   const handleSolve = (selectedMethod) => {
-    setUpdate(!update);
-    const demand = tableData.demand;
-    const supply = tableData.rows.map((el) => el.supply);
-    const costs = tableData.rows.map((el) => el.values);
-    let newSolution;
-    if (selectedMethod === "Esquina noroeste") {
-      newSolution = northWestCorner(supply, demand, costs);
-      const objVal = calculateObjectiveValue(tableData, newSolution);
-      setMaxBenefit(objVal);
+    if (balanced) {
+      setSolution(false);
+      const demand = tableData.demand;
+      const supply = tableData.rows.map((el) => el.supply);
+      const costs = tableData.rows.map((el) => el.values);
+      let newSolution;
+      if (selectedMethod === "Esquina noroeste") {
+        newSolution = northWestCorner(supply, demand, costs);
+        const objVal = calculateObjectiveValue(tableData, newSolution);
+        setMaxBenefit(objVal);
+      }
+      if (selectedMethod === "Menor Costo") {
+        newSolution = leastCostMethod(costs, supply, demand);
+        const objVal = calculateObjectiveValue(tableData, newSolution);
+        console.log(tableData, newSolution, objVal);
+        setMaxBenefit(objVal);
+      }
+      if (selectedMethod === "Voguel") {
+        newSolution = vogelApproximationMethod(costs, supply, demand);
+        const objVal = calculateObjectiveValue(tableData, newSolution);
+        setMaxBenefit(objVal);
+      }
+      setSolution(newSolution);
     }
-    if (selectedMethod === "Menor Costo") {
-      newSolution = leastCostMethod(costs, supply, demand);
-      const objVal = calculateObjectiveValue(tableData, newSolution);
-      console.log(tableData, newSolution, objVal);
-      setMaxBenefit(objVal);
-    }
-    if (selectedMethod === "Voguel") {
-      newSolution = vogelApproximationMethod(costs, supply, demand);
-      const objVal = calculateObjectiveValue(tableData, newSolution);
-      setMaxBenefit(objVal);
-    }
-    setSolution(newSolution);
   };
   const handleCellValueChange = (rowIndex, colIndex, newValue) => {
     setTableData((prevData) => {

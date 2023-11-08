@@ -18,18 +18,22 @@ export const PlanningTypeSelection = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState(TYPE.CPM);
 
-  const handleListItemClick = (event, value, cpm = true) => {
+  const handleListItemClick = (event, value, cpm = true, type = false) => {
     if (cpm) {
       setSelected(value);
       goToActivities();
     } else {
-      goToMatrix();
+      goToMatrix(type);
     }
   };
 
-  const goToMatrix = () => {
+  const goToMatrix = (type) => {
     dispatch(chooseType(selected));
-    navigate("/transport");
+    if (type === "transport") {
+      navigate("/transport");
+    } else {
+      navigate("/assignment");
+    }
   };
 
   const goToActivities = () => {
@@ -96,11 +100,13 @@ export const PlanningTypeSelection = () => {
         <List component="nav" aria-label="planning types">
           <ListItemButton
             selected={selected === TYPE.CPM}
-            onClick={(event) => handleListItemClick(event, TYPE.CPM, false)}
+            onClick={(event) =>
+              handleListItemClick(event, TYPE.CPM, false, "transport")
+            }
           >
             <ListItemText
               sx={{ my: 0, display: "flex", justifyContent: "center" }}
-              primary="TRANSPORTE Y ASIGNACION"
+              primary="TRANSPORTE"
               primaryTypographyProps={{
                 fontSize: 18,
                 fontWeight: "small",
@@ -108,20 +114,20 @@ export const PlanningTypeSelection = () => {
               }}
             />
           </ListItemButton>
-          {/* <ListItemButton
+          <ListItemButton
             selected={selected === TYPE.PERT}
-            onClick={(event) => handleListItemClick(event, TYPE.PERT)}
+            onClick={(event) => handleListItemClick(event, TYPE.PERT, false)}
           >
             <ListItemText
               sx={{ my: 0, display: "flex", justifyContent: "center" }}
-              primary="PERT"
+              primary="ASIGNACION"
               primaryTypographyProps={{
                 fontSize: 18,
                 fontWeight: "small",
                 letterSpacing: 1,
               }}
             />
-          </ListItemButton> */}
+          </ListItemButton>
         </List>
       </Box>
 
