@@ -431,7 +431,7 @@ const MainTable = () => {
           </TableBody>
         </Table>
       </Paper>
-      <Button style={{ margin: "0.5rem 1rem" }} onClick={handleClick}>
+      <Button style={{ margin: "0.5rem 1rem 5rem" }} onClick={handleClick}>
         Resolver Problema
       </Button>
       <Menu
