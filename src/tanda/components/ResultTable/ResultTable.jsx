@@ -104,8 +104,11 @@ const ResultTable = ({
           variant="h7"
           //   component="h2"
         >
-          Metodo: {isTransport ? `Hungaro` : method} | Beneficio maximo:{" "}
-          {isTransport ? hungerResult : resultHunger}
+          {!isTransport
+            ? `Metodo: Hungaro | Beneficio maximo: ${resultHunger}`
+            : `Metodo: ${method} | Beneficio maximo: ${result}`}
+          {/* Metodo: {isTransport ? `Hungaro` : method} | Beneficio maximo:{" "}
+          {isTransport ? hungerResult : resultHunger} */}
         </Typography>
       </Paper>
     </>
