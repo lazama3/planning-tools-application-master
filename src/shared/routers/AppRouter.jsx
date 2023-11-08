@@ -12,7 +12,8 @@ import { ActivityEditor, ActivityList } from "../../activity/pages";
 import { GraphScreen, ResultScreen } from "../../path/pages";
 import { PlanningTypeSelection } from "../pages/PlanningTypeSelection";
 import { ValidateRoute } from "./ValidateRoute";
-import MainTable from "../../tanda/components/MainTable/MainTable";
+import TransportMainTable from "../../tanda/components/TransportMainTable/TransportMainTable";
+import AssignmentMainTable from "../../tanda/components/AssignmentMainTable/AssignmentMainTable";
 
 export const AppRouter = () => {
   const currentPlanningTypeText = useSelector(selectCurrentPlanningTypeText);
@@ -59,7 +60,15 @@ export const AppRouter = () => {
                 path="/transport"
                 element={
                   <ValidateRoute type={currentPlanningTypeText}>
-                    <MainTable />
+                    <TransportMainTable />
+                  </ValidateRoute>
+                }
+              />
+              <Route
+                path="/assignment"
+                element={
+                  <ValidateRoute type={currentPlanningTypeText}>
+                    <AssignmentMainTable />
                   </ValidateRoute>
                 }
               />
