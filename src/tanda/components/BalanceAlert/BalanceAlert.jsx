@@ -8,8 +8,12 @@ const BalanceAlert = ({ supply, demand, update, setBalanced }) => {
   useEffect(() => {}, [supply, demand, update]);
   const isBalanced = checkBalance(supply, demand);
   function checkBalance(supply, demand) {
-    const totalSupply = supply.reduce((acc, val) => acc + val, 0);
-    const totalDemand = demand.reduce((acc, val) => acc + val, 0);
+    const totalSupply = supply.length
+      ? supply.reduce((acc, val) => acc + val, 0)
+      : 0;
+    const totalDemand = demand.length
+      ? demand.reduce((acc, val) => acc + val, 0)
+      : 0;
     setBalanced(totalSupply === totalDemand);
     console.log(totalSupply, totalDemand);
     return totalSupply === totalDemand;

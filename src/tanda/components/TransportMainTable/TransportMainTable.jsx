@@ -30,11 +30,13 @@ const MainTable = () => {
   const createInitialTableData = (rows, columns) => {
     let data = [];
     for (let i = 0; i < rows; i++) {
-      data.push({ values: Array(columns).fill(0), supply: 0 });
+      if (columns) {
+        data.push({ values: Array(columns).fill(""), supply: "" });
+      }
     }
     return {
       rows: data,
-      demand: Array(columns).fill(0),
+      demand: columns ? Array(columns).fill("") : false,
     };
   };
   const handleClick = (event) => {
@@ -49,6 +51,8 @@ const MainTable = () => {
   const [solution, setSolution] = useState(false);
 
   const handleSolve = (selectedMethod) => {
+    console.log("balanced");
+    console.log(balanced);
     if (balanced) {
       setSolution(false);
       const demand = tableData.demand;
@@ -77,7 +81,7 @@ const MainTable = () => {
   const handleCellValueChange = (rowIndex, colIndex, newValue) => {
     setTableData((prevData) => {
       const newData = { ...prevData };
-      newData.rows[rowIndex].values[colIndex] = parseFloat(newValue) || 0;
+      newData.rows[rowIndex].values[colIndex] = parseFloat(newValue);
       return newData;
     });
   };
@@ -85,7 +89,7 @@ const MainTable = () => {
   const handleSupplyChange = (rowIndex, newValue) => {
     setTableData((prevData) => {
       const newData = { ...prevData };
-      newData.rows[rowIndex].supply = parseFloat(newValue) || 0;
+      newData.rows[rowIndex].supply = parseFloat(newValue);
       return newData;
     });
   };
@@ -93,7 +97,7 @@ const MainTable = () => {
   const handleDemandChange = (colIndex, newValue) => {
     setTableData((prevData) => {
       const newData = { ...prevData };
-      newData.demand[colIndex] = parseFloat(newValue) || 0;
+      newData.demand[colIndex] = parseFloat(newValue);
       return newData;
     });
   };
@@ -340,7 +344,9 @@ const MainTable = () => {
           label="Número de Columnas"
           type="number"
           value={columns}
-          onChange={(e) => setColumns(parseInt(e.target.value))}
+          onChange={(e) => {
+            setColumns(parseInt(e.target.value));
+          }}
         />
       </div>
       <Paper elevation={3} style={{ margin: "0 1rem" }}>
@@ -355,13 +361,15 @@ const MainTable = () => {
               >
                 {/* S/D Name */}
               </TableCell>
-              {Array.from({ length: columns }, (_, colIndex) => (
-                <TableCell
-                  key={colIndex}
-                  align="center"
-                  // style={{ color: "white", fontWeight: "bold" }}
-                >{`D${colIndex + 1}`}</TableCell>
-              ))}
+              {columns
+                ? Array.from({ length: columns || 1 }, (_, colIndex) => (
+                    <TableCell
+                      key={colIndex}
+                      align="center"
+                      // style={{ color: "white", fontWeight: "bold" }}
+                    >{`D${colIndex + 1}`}</TableCell>
+                  ))
+                : false}
               <TableCell
                 align="center"
                 // style={{ color: "white", fontWeight: "bold" }}
@@ -416,18 +424,20 @@ const MainTable = () => {
               >
                 Demanda
               </TableCell>
-              {tableData.demand.map((value, colIndex) => (
-                <TableCell key={colIndex} align="center">
-                  <TextField
-                    size="small"
-                    value={value}
-                    onChange={(e) =>
-                      handleDemandChange(colIndex, e.target.value)
-                    }
-                    type="number"
-                  />
-                </TableCell>
-              ))}
+              {tableData.demand.length
+                ? tableData.demand.map((value, colIndex) => (
+                    <TableCell key={colIndex} align="center">
+                      <TextField
+                        size="small"
+                        value={value}
+                        onChange={(e) =>
+                          handleDemandChange(colIndex, e.target.value)
+                        }
+                        type="number"
+                      />
+                    </TableCell>
+                  ))
+                : []}
               <TableCell align="center"></TableCell>
             </TableRow>
           </TableBody>

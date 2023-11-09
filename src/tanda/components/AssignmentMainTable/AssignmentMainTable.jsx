@@ -27,11 +27,11 @@ const AssignmentMainTable = () => {
   const createInitialTableData = (rows, columns) => {
     let data = [];
     for (let i = 0; i < rows; i++) {
-      data.push({ values: Array(columns).fill(0), supply: 0 });
+      data.push({ values: Array(columns).fill(""), supply: "" });
     }
     return {
       rows: data,
-      demand: Array(columns).fill(0),
+      demand: columns ? Array(columns).fill("") : [],
     };
   };
 
