@@ -1,0 +1,13 @@
+.MainTable {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px 0;
+}
+.MainTable div{
+    width: 150px; /* subtracting the margin */
+}
+.MainTable table {
+    margin: auto;
+}
+
