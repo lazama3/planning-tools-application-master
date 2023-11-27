@@ -105,8 +105,8 @@ const ResultTable = ({
           //   component="h2"
         >
           {!isTransport
-            ? `Metodo: Hungaro | Beneficio maximo: ${resultHunger}`
-            : `Metodo: ${method} | Beneficio maximo: ${result}`}
+            ? `Método: Hungaro | Beneficio máximo: ${resultHunger}`
+            : `Método: ${method} | Beneficio máximo: ${result}`}
           {/* Metodo: {isTransport ? `Hungaro` : method} | Beneficio maximo:{" "}
           {isTransport ? hungerResult : resultHunger} */}
         </Typography>

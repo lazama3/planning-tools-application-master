@@ -92,7 +92,7 @@ export const PlanningTypeSelection = () => {
         </List>
       </Box>
       <Box textAlign="center">
-        <Typography variant="overline">Transporte</Typography>
+        <Typography variant="overline">Transporte y asignación</Typography>
         <Divider />
       </Box>
 
@@ -120,7 +120,7 @@ export const PlanningTypeSelection = () => {
           >
             <ListItemText
               sx={{ my: 0, display: "flex", justifyContent: "center" }}
-              primary="ASIGNACION"
+              primary="ASIGNACIÓN"
               primaryTypographyProps={{
                 fontSize: 18,
                 fontWeight: "small",
