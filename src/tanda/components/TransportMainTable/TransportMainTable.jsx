@@ -76,6 +76,8 @@ const MainTable = () => {
         setMaxBenefit(objVal);
       }
       setSolution(newSolution);
+    } else {
+      setSolution(false);
     }
   };
   const handleCellValueChange = (rowIndex, colIndex, newValue) => {
