@@ -189,7 +189,7 @@ const AssignmentMainTable = () => {
           </TableBody>
         </Table>
       </Paper>
-      <Button style={{ margin: "0.5rem 1rem" }} onClick={handleSolve}>
+      <Button style={{ margin: "0.5rem 1rem 5rem" }} onClick={handleSolve}>
         Resolver Problema
       </Button>
       <BalanceAlert
