@@ -14,6 +14,7 @@ import { PlanningTypeSelection } from "../pages/PlanningTypeSelection";
 import { ValidateRoute } from "./ValidateRoute";
 import TransportMainTable from "../../tanda/components/TransportMainTable/TransportMainTable";
 import AssignmentMainTable from "../../tanda/components/AssignmentMainTable/AssignmentMainTable";
+import ResoursesAssignment from "../../resourseAssignment/components/ResoursesAssignment";
 
 export const AppRouter = () => {
   const currentPlanningTypeText = useSelector(selectCurrentPlanningTypeText);
@@ -69,6 +70,14 @@ export const AppRouter = () => {
                 element={
                   <ValidateRoute type={currentPlanningTypeText}>
                     <AssignmentMainTable />
+                  </ValidateRoute>
+                }
+              />
+              <Route
+                path="/resourses"
+                element={
+                  <ValidateRoute type={currentPlanningTypeText}>
+                    <ResoursesAssignment />
                   </ValidateRoute>
                 }
               />

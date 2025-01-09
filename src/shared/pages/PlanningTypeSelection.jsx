@@ -55,7 +55,7 @@ export const PlanningTypeSelection = () => {
   return (
     <>
       <Box textAlign="center">
-        <Typography variant="overline">Planificación</Typography>
+        <Typography variant="overline">Planificación y Asignación de recursos</Typography>
         <Divider />
       </Box>
 

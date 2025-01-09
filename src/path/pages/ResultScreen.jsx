@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { Footer, Toolbar } from "../../shared/ui";
 import { PathList, ProyectDuration } from "../components";
 import { selectCriticalPaths, selectPaths } from "../../shared/store/slices/path/path.slice";
@@ -17,7 +17,7 @@ export const ResultScreen = () => {
 
   return (
     <>
-      <Toolbar title="Resultados" previousPage="/diagram" previousPageTitle="Diagrama" />
+      <Toolbar textAlign="center" title="Resultados" previousPage="/diagram" previousPageTitle="Diagrama" nextPage="/resourses" nextPageTitle="Asignacion de recursos"/>
 
       {isProcessed ? (
         <Box textAlign="center" display="flex" flexDirection="column" gap={2}>
@@ -25,6 +25,7 @@ export const ResultScreen = () => {
           <PathList paths={criticalPaths} title={"Caminos críticos"} />
           <PathList paths={paths} title={"Posibles caminos"} />
         </Box>
+        
       ) : (
         <Box textAlign="center">
           <Typography variant="subtitle1">Falta processar las actividades</Typography>
