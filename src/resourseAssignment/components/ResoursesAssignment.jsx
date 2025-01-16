@@ -73,7 +73,7 @@ const AsignacionRecursos = () => {
 	console.log(dataset); // Log the dataset to verify
 
 	return (
-		<>
+		<div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
 			<Toolbar title="Asignacion de recursos" previousPage="/paths" previousPageTitle="Resultados" />
 			<Box textAlign="center" mt={1}>
 				<Typography variant="subtitle1">Algoritmo de Burgess-Killebrew</Typography>
@@ -127,34 +127,36 @@ const AsignacionRecursos = () => {
 				</Table>
 			</TableContainer>
 
-			{console.log(activityData)}
+			{/* {console.log(activityData)} */}
 
 			<Divider />
 
-			<h1>GRAFICO DE BARRAS</h1>
+			{/* <h1>GRAFICO DE BARRAS</h1> */}
 
 			<div
-				style={{ 
+				style={{
 					display: 'flex',
 					width: "100%",
+					height: "50%",
 					justifyContent: "center",
-					alignItems: "center"
+					alignItems: "center",
+					marginTop: "30px"
 				}}
 			>
-				<BarChart />
+				<BarChart dataset={dataset} />
 			</div>
 
 			{/* <Box>
-      <BarChart
-        xAxis={[{ dataKey: 'x', label: 'Column' }]}
-        series={[{ dataKey: 'y', label: 'Total Resources' }]}
-        width={600}
-        height={300}
-        data={dataset}
-      />
-    </Box> */}
-
-		</>
+				<BarChart
+					xAxis={[{ dataKey: 'x', label: 'Column' }]}
+					series={[{ dataKey: 'y', label: 'Total Resources' }]}
+					width={600}
+					height={300}
+					data={dataset}
+				/>
+				</Box> 
+			*/}
+		</div>
 	);
 };
 
