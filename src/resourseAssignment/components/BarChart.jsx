@@ -15,34 +15,22 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export const BarChart = ({ dataset }) => {
 
-    // const valoresX = dataset.map(data => data.x)
-    // const valoresY = dataset.map(data => data.y)
-
     let valoresX = []
     let valoresY = []
 
     for(let data of dataset){
         valoresX.push(data.x)
         valoresY.push(data.y)
-        console.log("x:", data.x)
-        console.log("y:", data.y)
     }
 
-    // console.log("valores de X:", valoresX)
-    // console.log("valores de Y:", valoresY)
-
     const data = {
-        // valores del eje X
-        // labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
         labels: valoresX,
         datasets: [
             {
-                label: 'Recusos sumados',
-                // valores del eje Y
-                // data: [120, 150, 180, 70, 90],
+                label: '', 
                 data: valoresY,
-                backgroundColor: '#1976D2',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: '#C6E2B5',
+                borderColor: '#C6E2B5',
                 borderWidth: 1,
             },
         ],
@@ -52,13 +40,12 @@ export const BarChart = ({ dataset }) => {
     const options = {
         responsive: true,
         maintainAspectRatio: true, // Mantener las proporciones
-        plugins: {
-            legend: {
-                position: 'top', // 'top', 'bottom', 'left', 'right'
-            },
-            title: {
-                display: true,
-                text: 'Distribucion de recursos',
+        scales: {
+            y: {
+                min: 0,
+                ticks: {
+                    stepSize: 1,
+                },
             },
         },
     };
@@ -67,10 +54,6 @@ export const BarChart = ({ dataset }) => {
         <Bar
             data={data}
             options={options}
-            style={{ 
-                maxWidth: '40%', 
-                maxHeight: '450px' 
-            }}
         />
     )
 }

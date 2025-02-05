@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import {
+	Grid,
 	Box,
 	Divider,
 	Typography,
@@ -13,6 +14,7 @@ import {
 	TableRow,
 	Paper,
 	TextField,
+	Button,
 } from "@mui/material";
 
 // import { BarChart } from "@mui/x-charts/BarChart;
@@ -127,35 +129,57 @@ const AsignacionRecursos = () => {
 				</Table>
 			</TableContainer>
 
-			{/* {console.log(activityData)} */}
-
 			<Divider />
-
-			{/* <h1>GRAFICO DE BARRAS</h1> */}
-
-			<div
-				style={{
-					display: 'flex',
-					width: "100%",
-					height: "50%",
+			
+			<Box textAlign="center" mt={2}>
+				<Typography variant="subtitle1">Grafico de recursos</Typography>
+			</Box>
+			<Grid
+				container
+				direction="row"
+				sx={{
 					justifyContent: "center",
-					alignItems: "center",
-					marginTop: "30px"
+					alignItems: "flex-start",
+					marginTop: "10px"
 				}}
 			>
-				<BarChart dataset={dataset} />
-			</div>
-
-			{/* <Box>
-				<BarChart
-					xAxis={[{ dataKey: 'x', label: 'Column' }]}
-					series={[{ dataKey: 'y', label: 'Total Resources' }]}
-					width={600}
-					height={300}
-					data={dataset}
-				/>
-				</Box> 
-			*/}
+				<Grid item xs={6}>
+					<Box padding={1}>
+					<div 
+						style={{ width: "90%",
+								 height: "90%", 
+								 display: "flex", 
+								 justifyContent: "center", 
+								 alignItems: "center" }}
+					>
+						<BarChart dataset={dataset} />
+					</div>
+					</Box>
+				</Grid>
+				<Grid item xs={6}>
+					<Box padding={1}>
+						<Button variant="outlined" fullWidth color="success">
+							Buscar asignación de recursos optima
+						</Button>
+					</Box>
+					<Box padding={1}>
+						<Typography variant="subtitle1" textAlign='center'>
+							Resultados
+						</Typography>
+					</Box>
+					<Box justifyContent='start' alignItems='start'>
+						<Typography variant="subtitle1">
+							Cantidad de iteraciones:
+						</Typography>
+						<Typography variant="subtitle1">
+							Numero de iteracion actual: 
+						</Typography>
+						<Typography variant="subtitle1">
+							Cantidad promedio de recursos asignados:
+						</Typography>
+					</Box>
+				</Grid>
+			</Grid>			
 		</div>
 	);
 };
