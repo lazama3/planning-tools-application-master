@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
+import { encontrarDistribucionOptima } from "./distribucion_optima";
 import {
 	Grid,
 	Box,
@@ -158,7 +158,7 @@ const AsignacionRecursos = () => {
 				</Grid>
 				<Grid item xs={6}>
 					<Box padding={1}>
-						<Button variant="outlined" fullWidth color="success">
+						<Button variant="outlined" fullWidth color="success" onClick={() => encontrarDistribucionOptima(activityData, totalDuration)}>
 							Buscar asignación de recursos optima
 						</Button>
 					</Box>
