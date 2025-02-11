@@ -74,6 +74,11 @@ const AsignacionRecursos = () => {
 
 	console.log(dataset); // Log the dataset to verify
 
+	const handleEncontrarDistribucionOptima = () => {
+		let distribucion = encontrarDistribucionOptima(activityData, totalDuration)
+		
+	}
+
 	return (
 		<div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
 			<Toolbar title="Asignacion de recursos" previousPage="/paths" previousPageTitle="Resultados" />
