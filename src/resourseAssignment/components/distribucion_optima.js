@@ -10,7 +10,7 @@ const calcularRecursosPorColumna = (activityData, totalDuration) => {
     });
 };
 
-const calcularOptimo = (activityData, totalDuration) => {
+export const calcularOptimo = (activityData, totalDuration) => {
     let recursosColumnas = calcularRecursosPorColumna(activityData, totalDuration);
     let frecuenciaRecursos = recursosColumnas.reduce((acc, recurso) => {
         if (recurso > 0) {
@@ -81,7 +81,7 @@ export const encontrarDistribucionOptima = (activityData, totalDuration) => {
         return actividad;
     });
 
-    console.log("Distribución óptima aplicada a activityData:", activityDataModificado);
+    // console.log("Distribución óptima aplicada a activityData:", activityDataModificado);
     return activityDataModificado;
 };
 
