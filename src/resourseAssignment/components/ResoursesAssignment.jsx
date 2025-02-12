@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+// import { encontrarDistribucionOptima, calcularOptimo } from "./distribucion_optima";
+import { calcularRecursosPorColumna, cuadradoDeRecursos, multiplicarRecursosPorFrecuencia, calcularTotal, encontrarDistribucionOptima } from "./distribucion_optimav2";
 import {
 	Grid,
 	Box,
@@ -47,6 +48,9 @@ const AsignacionRecursos = () => {
 	});
 
 	const [activityData, setActivityData] = useState(initialActivityData);
+	const [totalOriginal, setTotalOriginal] = useState(0)
+	const [nuevoTotal, setNuevoTotal] = useState(0)
+	const [iteraciones, setIteraciones] = useState(0)
 
 	const handleResoursesChange = (id, newResourses) => {
 		setActivityData((prevData) =>
@@ -72,10 +76,31 @@ const AsignacionRecursos = () => {
 		return { x: col, y: totalResources };
 	});
 
-	console.log(dataset); // Log the dataset to verify
+	// console.log(dataset); // Log the dataset to verify
+
+	const handleTest = () => {
+		let distribucion = encontrarDistribucionOptima(activityData, totalDuration)
+		const { mejorDistribucion, nuevo_total, total_orignial, iteraciones } = distribucion
+
+		mejorDistribucion != null ? setActivityData(mejorDistribucion) : null
+
+		total_orignial != null ? setTotalOriginal(total_orignial) : null
+		nuevoTotal != null ? setNuevoTotal(nuevo_total) : null
+		iteraciones != null ? setIteraciones(iteraciones) : null
+
+		console.log(mejorDistribucion != null ? mejorDistribucion : null)
+	}
+
+	const handleReset = () => {
+		setActivityData(initialActivityData)
+		// mejorDistribucion = null
+		setTotalOriginal(0)
+		setNuevoTotal(0)
+		setIteraciones(0)
+	}
 
 	return (
-		<div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+		<div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
 			<Toolbar title="Asignacion de recursos" previousPage="/paths" previousPageTitle="Resultados" />
 			<Box textAlign="center" mt={1}>
 				<Typography variant="subtitle1">Algoritmo de Burgess-Killebrew</Typography>
@@ -130,7 +155,7 @@ const AsignacionRecursos = () => {
 			</TableContainer>
 
 			<Divider />
-			
+
 			<Box textAlign="center" mt={2}>
 				<Typography variant="subtitle1">Grafico de recursos</Typography>
 			</Box>
@@ -145,41 +170,53 @@ const AsignacionRecursos = () => {
 			>
 				<Grid item xs={6}>
 					<Box padding={1}>
-					<div 
-						style={{ width: "90%",
-								 height: "90%", 
-								 display: "flex", 
-								 justifyContent: "center", 
-								 alignItems: "center" }}
-					>
-						<BarChart dataset={dataset} />
-					</div>
+						<div
+							style={{
+								width: "90%",
+								height: "90%",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center"
+							}}
+						>
+							<BarChart dataset={dataset} />
+						</div>
 					</Box>
 				</Grid>
 				<Grid item xs={6}>
 					<Box padding={1}>
-						<Button variant="outlined" fullWidth color="success">
-							Buscar asignación de recursos optima
+						{/* <Button variant="outlined" fullWidth color="success" onClick={() => encontrarDistribucionOptima(activityData, totalDuration)}> */}
+						{/* <Button variant="outlined" fullWidth color="success" onClick={handleEncontrarDistribucionOptima}> */}
+						{/* Buscar asignación de recursos optima
+						</Button> */}
+						{/* testeo */}
+						<Button variant="outlined" fullWidth color="success" onClick={handleTest}>
+							Buscar optimo
 						</Button>
 					</Box>
-					<Box padding={1}>
-						<Typography variant="subtitle1" textAlign='center'>
-							Resultados
+					<Box justifyContent='start' alignItems='start'>
+						<Box padding={1}>
+							<Typography variant="subtitle1" textAlign='center'>
+								Resultados
+							</Typography>
+						</Box>
+						<Typography variant="subtitle1">
+							Iteraciones realizadas: <strong>{iteraciones}</strong>
+						</Typography>
+						<Typography variant="subtitle1">
+							Algoritmo de Burgess-Killebrew de la distribucion orignial: <strong>{totalOriginal}</strong>
+						</Typography>
+						<Typography variant="subtitle1">
+							Algoritmo de Burgess-Killebrew de la nueva distribucion: <strong>{nuevoTotal}</strong>
 						</Typography>
 					</Box>
-					<Box justifyContent='start' alignItems='start'>
-						<Typography variant="subtitle1">
-							Cantidad de iteraciones:
-						</Typography>
-						<Typography variant="subtitle1">
-							Numero de iteracion actual: 
-						</Typography>
-						<Typography variant="subtitle1">
-							Cantidad promedio de recursos asignados:
-						</Typography>
+					<Box padding={1}>
+						<Button variant="outlined" fullWidth color="success" onClick={handleReset}>
+							Reiniciar
+						</Button>
 					</Box>
 				</Grid>
-			</Grid>			
+			</Grid>
 		</div>
 	);
 };
